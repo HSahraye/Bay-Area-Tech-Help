@@ -27,7 +27,8 @@ import {
   SERVICE_AREA,
   SERVICES,
   TESTIMONIALS,
-  TRUST_POINTS
+  TRUST_POINTS,
+  WEBSITE_URL
 } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -63,8 +64,7 @@ const localBusinessSchema = {
     "New device setup",
     "General home tech support"
   ],
-  url: "https://example.com"
-  // TODO: Replace with your real website URL.
+  url: WEBSITE_URL
 };
 
 export default function Home() {
@@ -374,11 +374,11 @@ export default function Home() {
             {/* TODO: Replace with your real contact email and legal links. */}
             <a
               className="hover:text-slate-900"
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=support@zazuquickprep.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=support@bayareatechhelp.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              support@zazuquickprep.com
+              support@bayareatechhelp.com
             </a>
           </p>
         </div>

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { WEBSITE_URL } from "@/lib/site-data";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://example.com")
+  metadataBase: new URL(WEBSITE_URL)
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
