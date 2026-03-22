@@ -142,9 +142,6 @@ export default function Home() {
                 <article key={pkg.name} className="glass-card flex h-full flex-col p-6 sm:p-7">
                   <div className="flex items-start justify-between gap-3">
                     <h3 className="text-xl font-bold text-slate-900">{pkg.name}</h3>
-                    <p className="rounded-xl bg-brand-50 px-3 py-1 text-sm font-semibold text-brand-700">
-                      {pkg.price}
-                    </p>
                   </div>
                   <p className="mt-4 text-sm leading-6 text-slate-600">{pkg.description}</p>
                   <ul className="mt-4 space-y-2 text-sm text-slate-700">
