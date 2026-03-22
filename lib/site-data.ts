@@ -12,6 +12,9 @@ import {
 // TODO: Replace with actual business name.
 export const BUSINESS_NAME = "Bay Area Tech Help";
 export const WEBSITE_URL = "https://bayareatechhelp.com";
+export const SUPPORT_EMAIL = "support@bayareatechhelp.com";
+export const SUPPORT_EMAIL_GMAIL_LINK =
+  "https://mail.google.com/mail/?view=cm&fs=1&to=support@bayareatechhelp.com";
 
 // TODO: Replace with your real phone number.
 export const PHONE_NUMBER = "(510) 978-6055";

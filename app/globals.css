@@ -35,6 +35,10 @@ body {
   background-color: #020617 !important;
 }
 
+[data-theme="dark"] .bg-white\/95 {
+  background-color: rgba(2, 6, 23, 0.95) !important;
+}
+
 [data-theme="dark"] .bg-slate-50 {
   background-color: #0f172a !important;
 }

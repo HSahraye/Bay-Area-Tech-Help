@@ -13,7 +13,8 @@ import {
 import { CtaButtons } from "@/components/ui/cta-buttons";
 import { InfoCard } from "@/components/ui/info-card";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ThemeSelect } from "@/components/ui/theme-select";
+import { SiteFooter } from "@/components/ui/site-footer";
+import { SiteHeader } from "@/components/ui/site-header";
 import {
   BUSINESS_NAME,
   COMMON_ISSUES,
@@ -69,12 +70,10 @@ const localBusinessSchema = {
 export default function Home() {
   return (
     <>
+      <SiteHeader />
       <main>
         <section className="relative overflow-hidden pb-16 pt-10 sm:pt-14">
           <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-56 bg-gradient-to-b from-brand-100/70 to-transparent" />
-          <div className="section-shell mb-5 flex justify-end">
-            <ThemeSelect />
-          </div>
           <div className="section-shell grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="animate-floatIn">
               <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-700">
@@ -362,25 +361,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-slate-200 bg-white">
-        <div className="section-shell flex flex-col gap-4 py-8 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            <span className="font-semibold text-slate-900">{BUSINESS_NAME}</span> - Home tech support
-            in the Bay Area.
-          </p>
-          <p>
-            {/* TODO: Replace with your real contact email and legal links. */}
-            <a
-              className="hover:text-slate-900"
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=support@bayareatechhelp.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              support@bayareatechhelp.com
-            </a>
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 p-3 backdrop-blur sm:hidden">
         <div className="section-shell flex gap-2 px-0">
