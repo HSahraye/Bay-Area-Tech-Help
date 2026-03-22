@@ -13,8 +13,10 @@ import {
 import { CtaButtons } from "@/components/ui/cta-buttons";
 import { InfoCard } from "@/components/ui/info-card";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { ThemeSelect } from "@/components/ui/theme-select";
 import {
   BUSINESS_NAME,
+  COMMON_ISSUES,
   CONTACT_LINKS,
   FAQS,
   HIGHLIGHTS,
@@ -22,10 +24,9 @@ import {
   OFFICE_HOURS,
   OFFICE_LOCATION,
   OFFICE_MAPS_LINK,
+  PACKAGES,
   PHONE_NUMBER,
-  PRICING,
   SERVICE_AREA,
-  SERVICES,
   TESTIMONIALS,
   TRUST_POINTS,
   WEBSITE_URL
@@ -34,7 +35,7 @@ import {
 export const metadata: Metadata = {
   title: `${BUSINESS_NAME} | Home Tech Support in the Bay Area`,
   description:
-    "Local Bay Area home tech support for Wi-Fi, printer, TV setup, new devices, and everyday computer help. Friendly in-home and remote service with clear starting prices."
+    "Bay Area home tech support with 3 clear packages: Quick Fix, Home Tech Setup, and VIP Home Tech Day. Friendly local service with simple, transparent pricing."
 };
 
 const localBusinessSchema = {
@@ -42,7 +43,7 @@ const localBusinessSchema = {
   "@type": "LocalBusiness",
   name: BUSINESS_NAME,
   description:
-    "Friendly home tech support for Bay Area residents. Wi-Fi setup, printer setup, smart TV setup, computer cleanup, and device help.",
+    "Friendly home tech support for Bay Area residents with 3 clear package options: Quick Fix, Home Tech Setup, and VIP Home Tech Day.",
   telephone: PHONE_NUMBER,
   areaServed: SERVICE_AREA,
   address: {
@@ -55,13 +56,11 @@ const localBusinessSchema = {
   },
   openingHours: ["Mo-Fr 09:00-18:00"],
   hasMap: OFFICE_MAPS_LINK,
-  priceRange: "$75-$120+",
+  priceRange: "$99-$599",
   serviceType: [
-    "Wi-Fi setup",
-    "Printer setup",
-    "Smart TV setup",
-    "Computer tune-up",
-    "New device setup",
+    "Quick Fix package",
+    "Home Tech Setup package",
+    "VIP Home Tech Day package",
     "General home tech support"
   ],
   url: WEBSITE_URL
@@ -73,6 +72,9 @@ export default function Home() {
       <main>
         <section className="relative overflow-hidden pb-16 pt-10 sm:pt-14">
           <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-56 bg-gradient-to-b from-brand-100/70 to-transparent" />
+          <div className="section-shell mb-5 flex justify-end">
+            <ThemeSelect />
+          </div>
           <div className="section-shell grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="animate-floatIn">
               <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-700">
@@ -83,9 +85,9 @@ export default function Home() {
                 Stress-free home tech support for your busy life.
               </h1>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-                {BUSINESS_NAME} helps professionals, families, older adults, and recent movers get
-                their home tech working smoothly. From Wi-Fi and printer setup to smart TV,
-                computer cleanup, and new device setup, we make technology simple and reliable.
+                {BUSINESS_NAME} helps busy professionals, families, older adults, and recent movers
+                choose the right level of support fast. Pick one of three clear options: one issue,
+                home setup, or a full tech day.
               </p>
               <div className="mt-8">
                 <CtaButtons phoneHref={CONTACT_LINKS.call} smsHref={CONTACT_LINKS.text} />
@@ -97,22 +99,20 @@ export default function Home() {
             </div>
 
             <aside className="glass-card animate-floatIn p-6 [animation-delay:120ms] sm:p-8">
-              <h2 className="text-lg font-semibold text-slate-900">Starting prices</h2>
-              <ul className="mt-4 space-y-3">
-                {PRICING.map((item) => (
+              <h2 className="text-lg font-semibold text-slate-900">Choose your package</h2>
+              <ul className="mt-4 space-y-3 text-sm text-slate-700">
+                {PACKAGES.map((pkg) => (
                   <li
-                    key={item.service}
-                    className="flex items-center justify-between gap-3 border-b border-slate-100 pb-3 last:border-none last:pb-0"
+                    key={pkg.name}
+                    className="flex items-center gap-2 border-b border-slate-100 pb-3 last:border-none last:pb-0"
                   >
-                    <span className="text-sm text-slate-600">{item.service}</span>
-                    <span className="rounded-lg bg-brand-50 px-3 py-1 text-sm font-semibold text-brand-700">
-                      {item.price}
-                    </span>
+                    <CircleCheckBig aria-hidden="true" className="h-4 w-4 text-brand-700" />
+                    <span>{pkg.name}</span>
                   </li>
                 ))}
               </ul>
-              <a href="#pricing" className="mt-5 inline-flex items-center text-sm font-semibold text-brand-700">
-                View full pricing details
+              <a href="#packages" className="mt-5 inline-flex items-center text-sm font-semibold text-brand-700">
+                Compare packages
                 <ChevronRight aria-hidden="true" className="ml-1 h-4 w-4" />
               </a>
             </aside>
@@ -130,23 +130,56 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="services" className="py-16 sm:py-20">
+        <section id="packages" className="py-16 sm:py-20">
           <div className="section-shell">
             <SectionHeading
-              eyebrow="Services"
-              title="Home tech services built for real households"
-              description="Get practical, on-the-spot support for the devices and apps your home relies on every day."
+              eyebrow="Packages"
+              title="One issue, home setup, or a full tech day"
+              description="Skip the confusing service menu. Choose the package that matches how much help you need."
             />
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {SERVICES.map((service) => (
-                <InfoCard
-                  key={service.title}
-                  icon={service.icon}
-                  title={service.title}
-                  description={service.description}
-                  detail={service.detail}
-                />
+            <div className="mt-10 grid gap-5 lg:grid-cols-3">
+              {PACKAGES.map((pkg) => (
+                <article key={pkg.name} className="glass-card flex h-full flex-col p-6 sm:p-7">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-xl font-bold text-slate-900">{pkg.name}</h3>
+                    <p className="rounded-xl bg-brand-50 px-3 py-1 text-sm font-semibold text-brand-700">
+                      {pkg.price}
+                    </p>
+                  </div>
+                  <p className="mt-4 text-sm leading-6 text-slate-600">{pkg.description}</p>
+                  <ul className="mt-4 space-y-2 text-sm text-slate-700">
+                    {pkg.examples.map((example) => (
+                      <li key={example} className="flex items-start gap-2">
+                        <CircleCheckBig aria-hidden="true" className="mt-0.5 h-4 w-4 text-brand-700" />
+                        {example}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-4 border-t border-slate-100 pt-4 text-sm font-semibold text-slate-800">
+                    {pkg.supportLine}
+                  </p>
+                </article>
               ))}
+            </div>
+            <p className="mt-6 text-sm text-slate-600">
+              We also help with Wi-Fi, printers, laptops, TVs, email, Zoom, device setup, and more.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {COMMON_ISSUES.map((issue) => (
+                <span
+                  key={issue}
+                  className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600"
+                >
+                  {issue}
+                </span>
+              ))}
+            </div>
+            <p className="mt-5 text-xs leading-5 text-slate-500">
+              Quick Fix covers one clearly defined issue. If your visit turns into a larger setup or
+              multi-item project, we&apos;ll give you a clear upgrade option before continuing.
+            </p>
+            <div className="mt-6">
+              <CtaButtons phoneHref={CONTACT_LINKS.call} smsHref={CONTACT_LINKS.text} compact />
             </div>
           </div>
         </section>
@@ -169,41 +202,6 @@ export default function Home() {
                 </li>
               ))}
             </ol>
-          </div>
-        </section>
-
-        <section id="pricing" className="py-16 sm:py-20">
-          <div className="section-shell">
-            <SectionHeading
-              eyebrow="Pricing"
-              title="Clear starting rates, no guesswork"
-              description="Transparent pricing helps you decide quickly and avoid surprise charges."
-            />
-            <div className="mt-10 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft">
-              <table className="w-full text-left">
-                <caption className="sr-only">Starting prices for common services</caption>
-                <thead className="bg-slate-50">
-                  <tr>
-                    <th className="px-5 py-3 text-sm font-semibold text-slate-700">Service</th>
-                    <th className="px-5 py-3 text-sm font-semibold text-slate-700">Starting at</th>
-                    <th className="px-5 py-3 text-sm font-semibold text-slate-700">Best for</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {PRICING.map((item) => (
-                    <tr key={item.service} className="border-t border-slate-100">
-                      <td className="px-5 py-4 text-sm font-medium text-slate-900">{item.service}</td>
-                      <td className="px-5 py-4 text-sm font-semibold text-brand-700">{item.price}</td>
-                      <td className="px-5 py-4 text-sm text-slate-600">{item.note}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-4 text-sm text-slate-500">
-              Final quote may vary based on complexity and travel. We confirm expected cost before
-              any work begins.
-            </p>
           </div>
         </section>
 
@@ -356,6 +354,9 @@ export default function Home() {
                   Text for same-day availability
                 </a>
               </div>
+              <p className="mt-3 text-sm text-slate-200">
+                Not sure which package fits? Call or text and we&apos;ll guide you.
+              </p>
               <p className="mt-4 text-sm text-slate-300">
                 Office location: {OFFICE_LOCATION} | Office hours: {OFFICE_HOURS}
               </p>

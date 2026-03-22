@@ -1,16 +1,10 @@
 import {
   CheckCircle2,
   Clock3,
-  LaptopMinimal,
   MapPin,
   MessageSquare,
-  MonitorSmartphone,
-  Printer,
-  Router,
   ShieldCheck,
-  Smartphone,
   Sparkles,
-  Tv,
   Users,
   Wrench
 } from "lucide-react";
@@ -38,49 +32,51 @@ export const OFFICE_LOCATION = "2417 Mariner Square Loop, Alameda, CA 94501";
 export const OFFICE_HOURS = "Monday to Friday, 9:00 AM to 6:00 PM";
 export const OFFICE_MAPS_LINK = "https://maps.google.com/?q=2417+Mariner+Square+Loop,+Alameda,+CA+94501";
 
-export const SERVICES = [
+export const PACKAGES = [
   {
-    icon: Router,
-    title: "Wi-Fi setup and optimization",
-    description:
-      "Set up new routers, mesh systems, and secure passwords so every room gets reliable, fast internet.",
-    detail: "Starting at $100"
+    name: "Quick Fix",
+    price: "$99",
+    description: "Fast help for one issue.",
+    examples: ["Printer offline", "Email setup", "Zoom trouble", "TV app login", "Slow laptop", "Basic Wi-Fi issue"],
+    supportLine: "Best for one problem, one visit, quick resolution."
   },
   {
-    icon: Printer,
-    title: "Printer setup and troubleshooting",
-    description:
-      "Connect wireless printers, fix offline issues, and make sure laptops and phones print without headaches.",
-    detail: "Starting at $75"
+    name: "Home Tech Setup",
+    price: "$199 to $299",
+    description: "For homes that need multiple devices set up and working together.",
+    examples: [
+      "Wi-Fi setup",
+      "Printer connection",
+      "Smart TV setup",
+      "Laptop and phone setup",
+      "Device syncing",
+      "Basic home office setup"
+    ],
+    supportLine: "Best for movers, families, and new home setups."
   },
   {
-    icon: Tv,
-    title: "Smart TV and streaming setup",
-    description:
-      "Install and organize apps, connect sound systems, and simplify remotes for easy everyday use.",
-    detail: "Starting at $80"
-  },
-  {
-    icon: LaptopMinimal,
-    title: "Slow computer cleanup",
-    description:
-      "Remove clutter, improve startup speed, and tune settings so your computer feels fast and stable again.",
-    detail: "Starting at $75"
-  },
-  {
-    icon: Smartphone,
-    title: "New device setup",
-    description:
-      "Set up phones, tablets, and laptops, transfer accounts, and configure privacy and backup settings.",
-    detail: "Starting at $120"
-  },
-  {
-    icon: MonitorSmartphone,
-    title: "File transfers and app help",
-    description:
-      "Move files safely from old devices and get practical help with Zoom, email, messaging, and daily apps.",
-    detail: "Starting at $75"
+    name: "VIP Home Tech Day",
+    price: "$399 to $599",
+    description: "2-4 hours onsite. We fix your whole list in one visit.",
+    examples: [
+      "Multiple tech issues in one home",
+      "New move-in setup",
+      "Slow devices",
+      "Wi-Fi, printers, TVs, and phones",
+      "Whole-home troubleshooting"
+    ],
+    supportLine: "Best for busy professionals, families, and older adults who want everything handled at once."
   }
+] as const;
+
+export const COMMON_ISSUES = [
+  "Wi-Fi problems",
+  "Printer setup",
+  "Laptop cleanup",
+  "Smart TV setup",
+  "Email help",
+  "Zoom support",
+  "Device setup"
 ] as const;
 
 export const HOW_IT_WORKS = [
@@ -101,30 +97,6 @@ export const HOW_IT_WORKS = [
     title: "3) Fixed and explained clearly",
     description:
       "We solve the issue, then walk you through what changed so your setup stays easy to use."
-  }
-] as const;
-
-// TODO: Replace these starting prices as needed for your business.
-export const PRICING = [
-  {
-    service: "General tech help visit",
-    price: "$75",
-    note: "Ideal for troubleshooting, software fixes, and device questions."
-  },
-  {
-    service: "Wi-Fi setup and optimization",
-    price: "$100",
-    note: "Router and mesh setup, speed tuning, and connection reliability."
-  },
-  {
-    service: "Smart TV and streaming setup",
-    price: "$80",
-    note: "TV app setup, account sign-in, remote pairing, and audio checks."
-  },
-  {
-    service: "New device setup",
-    price: "$120",
-    note: "Phone, tablet, or laptop setup with account sync and security settings."
   }
 ] as const;
 
@@ -175,6 +147,11 @@ export const TESTIMONIALS = [
 
 export const FAQS = [
   {
+    question: "How do I choose the right package?",
+    answer:
+      "Start with Quick Fix for one clearly defined issue, Home Tech Setup for multi-device setup, and VIP Home Tech Day when you want a full list handled in one visit."
+  },
+  {
     question: "Do you offer same-day appointments?",
     answer:
       "Yes, same-day or next-day appointments are often available depending on your location and schedule."
@@ -188,6 +165,11 @@ export const FAQS = [
     question: "Do you provide remote support?",
     answer:
       "Yes. Many software, email, and app issues can be solved remotely, while hardware and setup requests are usually best in-home."
+  },
+  {
+    question: "What if my Quick Fix turns into a bigger project?",
+    answer:
+      "If the visit expands into a larger setup or multi-item project, we explain a clear upgrade option before continuing."
   },
   {
     question: "What areas do you serve?",
