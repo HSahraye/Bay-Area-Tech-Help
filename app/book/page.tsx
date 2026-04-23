@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { BookingPageContent } from "@/components/booking/booking-page-content";
 import { SiteFooter } from "@/components/ui/site-footer";
 import { SiteHeader } from "@/components/ui/site-header";
@@ -13,7 +14,19 @@ export default function BookPage() {
   return (
     <>
       <SiteHeader />
-      <BookingPageContent />
+      <Suspense
+        fallback={
+          <main>
+            <section className="pb-12 pt-12">
+              <div className="section-shell">
+                <div className="glass-card p-6 text-sm text-slate-600">Loading booking options...</div>
+              </div>
+            </section>
+          </main>
+        }
+      >
+        <BookingPageContent />
+      </Suspense>
       <SiteFooter />
     </>
   );
