@@ -16,6 +16,9 @@ export function SiteFooter() {
           <Link className="hover:text-slate-900" href="/about">
             About
           </Link>
+          <Link className="hover:text-slate-900" href="/book">
+            Book
+          </Link>
           <a
             className="hover:text-slate-900"
             href={SUPPORT_EMAIL_GMAIL_LINK}

@@ -16,10 +16,16 @@ export function SiteHeader() {
           <Link className="hover:text-slate-900" href="/about">
             About
           </Link>
+          <Link className="hover:text-slate-900" href="/book">
+            Book Now
+          </Link>
         </nav>
         <div className="flex items-center gap-2">
           <ThemeSelect />
-          <a className="cta-primary hidden px-4 py-2 text-xs sm:inline-flex" href={CONTACT_LINKS.call}>
+          <Link className="cta-secondary hidden px-4 py-2 text-xs sm:inline-flex" href="/book">
+            Book Now
+          </Link>
+          <a className="cta-primary hidden px-4 py-2 text-xs lg:inline-flex" href={CONTACT_LINKS.call}>
             Call Now
           </a>
         </div>

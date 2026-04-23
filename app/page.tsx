@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   ArrowRight,
   BadgeCheck,
@@ -32,6 +33,7 @@ import {
   TRUST_POINTS,
   WEBSITE_URL
 } from "@/lib/site-data";
+import { getBookingPathByServiceName } from "@/lib/booking-services";
 
 export const metadata: Metadata = {
   title: `${BUSINESS_NAME} | Home Tech Support in the Bay Area`,
@@ -90,6 +92,11 @@ export default function Home() {
               </p>
               <div className="mt-8">
                 <CtaButtons phoneHref={CONTACT_LINKS.call} smsHref={CONTACT_LINKS.text} />
+              </div>
+              <div className="mt-3">
+                <Link className="cta-secondary" href="/book">
+                  Book Now Online
+                </Link>
               </div>
               <p className="mt-3 text-sm text-slate-500">
                 Call or text <span className="font-semibold text-slate-700">{PHONE_NUMBER}</span>{" "}
@@ -154,6 +161,9 @@ export default function Home() {
                   <p className="mt-4 border-t border-slate-100 pt-4 text-sm font-semibold text-slate-800">
                     {pkg.supportLine}
                   </p>
+                  <Link className="cta-secondary mt-5 w-full" href={getBookingPathByServiceName(pkg.name)}>
+                    Book {pkg.name}
+                  </Link>
                 </article>
               ))}
             </div>
@@ -342,6 +352,9 @@ export default function Home() {
                 setup that simply works.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link className="cta-secondary border-white/30 bg-transparent text-white hover:bg-white/10" href="/book">
+                  Book Now
+                </Link>
                 <a className="cta-primary bg-white text-slate-900 hover:bg-slate-100" href={CONTACT_LINKS.call}>
                   <Phone aria-hidden="true" className="mr-2 h-4 w-4" />
                   Call {PHONE_NUMBER}
@@ -365,6 +378,9 @@ export default function Home() {
 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 p-3 backdrop-blur sm:hidden">
         <div className="section-shell flex gap-2 px-0">
+          <Link className="cta-secondary flex-1" href="/book">
+            Book
+          </Link>
           <a className="cta-primary flex-1" href={CONTACT_LINKS.call}>
             Call
           </a>

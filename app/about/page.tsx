@@ -75,6 +75,11 @@ export default function AboutPage() {
             <div className="mt-8">
               <CtaButtons phoneHref={CONTACT_LINKS.call} smsHref={CONTACT_LINKS.text} />
             </div>
+            <div className="mt-3">
+              <Link className="cta-secondary" href="/book">
+                Book Now Online
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -181,8 +186,8 @@ export default function AboutPage() {
                 <a className="cta-secondary border-white/30 bg-transparent text-white hover:bg-white/10" href={CONTACT_LINKS.text}>
                   Text to book help
                 </a>
-                <Link className="cta-secondary border-white/30 bg-transparent text-white hover:bg-white/10" href="/#packages">
-                  Book a package
+                <Link className="cta-secondary border-white/30 bg-transparent text-white hover:bg-white/10" href="/book">
+                  Book now
                   <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" />
                 </Link>
               </div>
@@ -195,6 +200,9 @@ export default function AboutPage() {
 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 p-3 backdrop-blur sm:hidden">
         <div className="section-shell flex gap-2 px-0">
+          <Link className="cta-secondary flex-1" href="/book">
+            Book
+          </Link>
           <a className="cta-primary flex-1" href={CONTACT_LINKS.call}>
             Call
           </a>
