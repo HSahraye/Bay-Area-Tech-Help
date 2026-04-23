@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { TroubleshootingChatbot } from "@/components/chatbot/troubleshooting-chatbot";
 import { WEBSITE_URL } from "@/lib/site-data";
 import "./globals.css";
 
@@ -26,7 +27,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           }}
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <TroubleshootingChatbot />
+      </body>
     </html>
   );
 }
