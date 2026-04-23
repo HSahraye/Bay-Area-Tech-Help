@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, CircleCheckBig, Handshake, HeartHandshake, ShieldCheck, Users } from "lucide-react";
 import { CtaButtons } from "@/components/ui/cta-buttons";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SiteFooter } from "@/components/ui/site-footer";
 import { SiteHeader } from "@/components/ui/site-header";
-import {
-  BUSINESS_NAME,
-  CONTACT_LINKS,
-  PHONE_NUMBER,
-  SERVICE_AREA,
-  SUPPORT_EMAIL,
-  WEBSITE_URL
-} from "@/lib/site-data";
+import { CONTACT_LINKS, WEBSITE_URL } from "@/lib/site-data";
+import AliImage from "@/Images/Ali.png";
+import OmarImage from "@/Images/Omar.png";
+import KevinImage from "@/Images/Kevin.png";
+import CarlosImage from "@/Images/Carlos.png";
+import BrianImage from "@/Images/Brian.png";
 
 export const metadata: Metadata = {
   title: "About Bay Area Tech Help | Local Bay Area Tech Support",
@@ -22,6 +21,42 @@ export const metadata: Metadata = {
     canonical: `${WEBSITE_URL}/about`
   }
 };
+
+// ABOUT PAGE CONTENT EDIT GUIDE:
+// Update these values to change About page copy quickly.
+const ABOUT_BUSINESS_NAME = "Bay Area Tech Help";
+const ABOUT_SERVICE_AREA =
+  "San Francisco, Oakland, Berkeley, Daly City, Alameda, and nearby Bay Area neighborhoods";
+const ABOUT_SUPPORT_EMAIL = "support@bayareatechhelp.com";
+const ABOUT_PHONE_NUMBER = "(510) 978-6055";
+
+const teamMembers = [
+  {
+    name: "Ali",
+    role: "Home Tech Specialist",
+    image: AliImage
+  },
+  {
+    name: "Omar",
+    role: "Network Support Specialist",
+    image: OmarImage
+  },
+  {
+    name: "Kevin",
+    role: "In-Home Setup Specialist",
+    image: KevinImage
+  },
+  {
+    name: "Carlos",
+    role: "Smart Home Specialist",
+    image: CarlosImage
+  },
+  {
+    name: "Brian",
+    role: "Remote Support Specialist",
+    image: BrianImage
+  }
+] as const;
 
 const values = [
   {
@@ -53,6 +88,12 @@ const audiences = [
   "Recent movers setting up Wi-Fi, TVs, printers, and home office tools"
 ] as const;
 
+const teamTrustPoints = [
+  "In-home & remote support",
+  "Fast response times",
+  "Trusted across the Bay Area"
+] as const;
+
 export default function AboutPage() {
   return (
     <>
@@ -69,7 +110,7 @@ export default function AboutPage() {
               About Bay Area Tech Help
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-              Meet the team behind {BUSINESS_NAME}. We are a small Bay Area group providing
+              Meet the team behind {ABOUT_BUSINESS_NAME}. We are a small Bay Area group providing
               friendly, reliable onsite and virtual tech support for homes across the region.
             </p>
             <div className="mt-8">
@@ -88,8 +129,60 @@ export default function AboutPage() {
             <SectionHeading
               eyebrow="Who We Are"
               title="Community-rooted support, built around real households"
-              description={`${BUSINESS_NAME} is a small group of professionals and enthusiastic students connected to UC Berkeley and San Francisco State University. We care deeply about making technology easier for everyday people, whether you need one quick fix or full home setup support.`}
+              description={`${ABOUT_BUSINESS_NAME} is a small group of professionals and enthusiastic students connected to UC Berkeley and San Francisco State University. We care deeply about making technology easier for everyday people, whether you need one quick fix or full home setup support.`}
             />
+          </div>
+        </section>
+
+        <section className="bg-white py-12 sm:py-16">
+          <div className="section-shell max-w-6xl">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 sm:text-sm">
+                Meet the Team
+              </p>
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                Trusted local technicians you can feel comfortable inviting into your home
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
+                Reliable, local tech specialists serving Bay Area homes and professionals.
+              </p>
+            </div>
+
+            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {teamMembers.map((member) => (
+                <article
+                  key={member.name}
+                  className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-md transition duration-300 hover:scale-[1.02] hover:shadow-lg"
+                >
+                  <div className="relative h-60 w-full overflow-hidden">
+                    <Image
+                      src={member.image}
+                      alt={`${member.name}, Bay Area Tech Help technician`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover object-center transition duration-500 group-hover:scale-[1.06]"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent" />
+                  </div>
+                  <div className="border-t border-slate-200 px-4 py-3">
+                    <h3 className="text-base font-semibold text-slate-900">{member.name}</h3>
+                    <p className="text-sm text-slate-500">{member.role}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-3 sm:gap-4">
+              {teamTrustPoints.map((point) => (
+                <div
+                  key={point}
+                  className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700"
+                >
+                  <CircleCheckBig aria-hidden="true" className="h-4 w-4 text-brand-700" />
+                  <span>{point}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -140,7 +233,7 @@ export default function AboutPage() {
                 forward.
               </p>
               <p className="mt-4 text-sm text-slate-600">
-                Serving {SERVICE_AREA} with onsite and virtual appointments.
+                Serving {ABOUT_SERVICE_AREA} with onsite and virtual appointments.
               </p>
             </aside>
           </div>
@@ -156,8 +249,8 @@ export default function AboutPage() {
               />
               <p className="mt-4 text-sm text-slate-700">
                 If you would like to join our team, please send us an email at{" "}
-                <a className="font-semibold text-brand-700 hover:text-brand-900" href={`mailto:${SUPPORT_EMAIL}`}>
-                  {SUPPORT_EMAIL}
+                <a className="font-semibold text-brand-700 hover:text-brand-900" href={`mailto:${ABOUT_SUPPORT_EMAIL}`}>
+                  {ABOUT_SUPPORT_EMAIL}
                 </a>
                 .
               </p>
@@ -181,7 +274,7 @@ export default function AboutPage() {
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a className="cta-primary bg-white text-slate-900 hover:bg-slate-100" href={CONTACT_LINKS.call}>
-                  Call {PHONE_NUMBER}
+                  Call {ABOUT_PHONE_NUMBER}
                 </a>
                 <a className="cta-secondary border-white/30 bg-transparent text-white hover:bg-white/10" href={CONTACT_LINKS.text}>
                   Text to book help
@@ -200,14 +293,11 @@ export default function AboutPage() {
 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 p-3 backdrop-blur sm:hidden">
         <div className="section-shell flex gap-2 px-0">
-          <Link className="cta-secondary flex-1" href="/book">
+          <Link className="cta-primary flex-1 py-2.5" href="/book">
             Book
           </Link>
-          <a className="cta-primary flex-1" href={CONTACT_LINKS.call}>
-            Call
-          </a>
-          <a className="cta-secondary flex-1" href={CONTACT_LINKS.text}>
-            Text
+          <a className="cta-secondary flex-1 py-2.5" href={CONTACT_LINKS.call}>
+            Call / Text
           </a>
         </div>
       </div>

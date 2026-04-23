@@ -43,31 +43,31 @@ export function BookingPageContent() {
 
   return (
     <main>
-      <section className="relative overflow-hidden pb-12 pt-10 sm:pt-14">
+      <section className="relative overflow-hidden pb-8 pt-8 sm:pb-12 sm:pt-14">
         <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-56 bg-gradient-to-b from-brand-100/70 to-transparent" />
         <div className="section-shell">
-          <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-700">
+          <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-brand-700 sm:mb-4 sm:text-xs">
             <BadgeCheck aria-hidden="true" className="h-3.5 w-3.5" />
             Secure online booking
           </p>
-          <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+          <h1 className="max-w-3xl text-3xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
             Book Your Tech Help Visit
           </h1>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+          <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600 sm:mt-5 sm:text-lg sm:leading-8">
             Choose the service that fits your needs, pick an available time, pay to confirm, and
             receive your booking details by email.
           </p>
-          <p className="mt-4 text-sm font-medium text-slate-700">
+          <p className="mt-3 text-sm font-medium text-slate-700 sm:mt-4">
             Your appointment time is reserved after booking and payment confirmation.
           </p>
         </div>
       </section>
 
-      <section className="pb-10">
+      <section className="pb-8 sm:pb-10">
         <div className="section-shell">
           <fieldset>
             <legend className="text-base font-semibold text-slate-900">1) Select your service package</legend>
-            <div className="mt-4 grid gap-4 lg:grid-cols-3">
+            <div className="mt-3 grid gap-3 sm:mt-4 sm:gap-4 lg:grid-cols-3">
               {BOOKING_SERVICES.map((service) => {
                 const isSelected = selectedServiceSlug === service.slug;
                 return (
@@ -75,21 +75,23 @@ export function BookingPageContent() {
                     key={service.slug}
                     type="button"
                     onClick={() => handleServiceChange(service)}
-                    className={`glass-card h-full rounded-2xl p-5 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
+                    className={`glass-card h-full rounded-2xl p-4 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 sm:p-5 ${
                       isSelected ? "border-brand-500 ring-2 ring-brand-200" : "hover:border-brand-300"
                     }`}
                     aria-pressed={isSelected}
                     aria-label={`Select ${service.name} package`}
                   >
                     <p className="text-base font-bold text-slate-900">{service.name}</p>
-                    <p className="mt-2 text-sm text-slate-600">{service.shortDescription}</p>
-                    <dl className="mt-4 space-y-1 text-sm text-slate-700">
-                      <div>
-                        <dt className="inline font-semibold">Duration:</dt> <dd className="inline">{service.duration}</dd>
-                      </div>
-                      <div>
-                        <dt className="inline font-semibold">Price:</dt> <dd className="inline">{service.priceDisplay}</dd>
-                      </div>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-700">
+                        {service.priceDisplay}
+                      </span>
+                      <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-700">
+                        {service.duration}
+                      </span>
+                    </div>
+                    <p className="mt-3 text-sm text-slate-600">{service.shortDescription}</p>
+                    <dl className="mt-3 space-y-1 text-sm text-slate-700">
                       <div>
                         <dt className="inline font-semibold">Best for:</dt> <dd className="inline">{service.bestFor}</dd>
                       </div>
@@ -102,21 +104,21 @@ export function BookingPageContent() {
         </div>
       </section>
 
-      <section className="pb-12">
+      <section className="pb-10 sm:pb-12">
         <div className="section-shell">
-          <p className="mb-4 text-base font-semibold text-slate-900">2) Pick a time and confirm online</p>
+          <p className="mb-3 text-base font-semibold text-slate-900 sm:mb-4">2) Pick a time and confirm online</p>
           <CalendlyEmbed eventUrl={selectedServiceDetails.calendlyUrl} serviceName={selectedServiceDetails.name} />
-          <p className="mt-3 text-sm text-slate-600">
+          <p className="mt-2 text-sm text-slate-600 sm:mt-3">
             Confirmation details and meeting instructions are sent to your email after booking.
           </p>
         </div>
       </section>
 
-      <section className="bg-white py-14">
-        <div className="section-shell grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="glass-card p-6 sm:p-7">
+      <section className="bg-white py-10 sm:py-14">
+        <div className="section-shell grid gap-4 sm:gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="glass-card p-5 sm:p-7">
             <h2 className="text-xl font-semibold text-slate-900">Booking FAQ and policies</h2>
-            <div className="mt-5 space-y-4 text-sm leading-6 text-slate-700">
+            <div className="mt-4 space-y-3 text-sm leading-6 text-slate-700 sm:mt-5 sm:space-y-4">
               <div>
                 <p className="font-semibold text-slate-900">How is my appointment confirmed?</p>
                 <p>Once you choose a time and complete payment in Calendly, your slot is reserved immediately.</p>
@@ -136,9 +138,9 @@ export function BookingPageContent() {
             </div>
           </div>
 
-          <aside className="glass-card p-6 sm:p-7">
+          <aside className="glass-card p-5 sm:p-7">
             <h3 className="text-lg font-semibold text-slate-900">Why clients book online</h3>
-            <ul className="mt-4 space-y-3 text-sm text-slate-700">
+            <ul className="mt-3 space-y-2 text-sm text-slate-700 sm:mt-4 sm:space-y-3">
               <li className="flex items-start gap-2">
                 <MapPinned aria-hidden="true" className="mt-0.5 h-4 w-4 text-brand-700" />
                 <span>Service area: {SERVICE_AREA}</span>
@@ -152,13 +154,13 @@ export function BookingPageContent() {
                 <span>Secure scheduling and payment handled by Calendly + Stripe.</span>
               </li>
             </ul>
-            <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4 sm:mt-5">
               <p className="text-sm font-semibold text-slate-900">After-booking confirmation</p>
               <p className="mt-1 text-sm text-slate-600">
                 Once booked, you will receive a confirmation email with date, time, and next steps.
               </p>
             </div>
-            <Link className="cta-secondary mt-5 w-full" href="/">
+            <Link className="cta-secondary mt-4 w-full sm:mt-5" href="/">
               Back to homepage
             </Link>
           </aside>

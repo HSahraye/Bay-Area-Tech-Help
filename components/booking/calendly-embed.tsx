@@ -90,15 +90,15 @@ export function CalendlyEmbed({ eventUrl, serviceName }: CalendlyEmbedProps) {
   }, [eventUrl, isScriptReady]);
 
   return (
-    <section aria-label={`${serviceName} booking calendar`} className="glass-card p-4 sm:p-6">
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <h2 className="text-lg font-semibold text-slate-900 sm:text-xl">Choose a time for {serviceName}</h2>
+    <section aria-label={`${serviceName} booking calendar`} className="glass-card p-3 sm:p-6">
+      <div className="mb-3 flex items-center justify-between gap-3 sm:mb-4">
+        <h2 className="text-base font-semibold text-slate-900 sm:text-xl">Choose a time for {serviceName}</h2>
       </div>
 
       {!isScriptReady && (
         <div
           aria-live="polite"
-          className="flex min-h-[620px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-sm text-slate-600"
+          className="flex min-h-[540px] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-sm text-slate-600 sm:min-h-[620px]"
         >
           Loading secure booking scheduler...
         </div>
@@ -106,7 +106,7 @@ export function CalendlyEmbed({ eventUrl, serviceName }: CalendlyEmbedProps) {
 
       <div
         ref={containerRef}
-        className={`${isScriptReady ? "block" : "hidden"} min-h-[620px] overflow-hidden rounded-2xl border border-slate-200 bg-white`}
+        className={`${isScriptReady ? "block" : "hidden"} min-h-[540px] overflow-hidden rounded-2xl border border-slate-200 bg-white sm:min-h-[620px]`}
       />
 
       {hasError && (
