@@ -101,6 +101,23 @@ body {
   @apply inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2;
 }
 
+@media (max-width: 768px) {
+  .animate-floatIn {
+    animation: none !important;
+  }
+
+  .shadow-soft {
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .glass-card {
+    background-color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06) !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;

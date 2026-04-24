@@ -7,11 +7,11 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { SiteFooter } from "@/components/ui/site-footer";
 import { SiteHeader } from "@/components/ui/site-header";
 import { CONTACT_LINKS, WEBSITE_URL } from "@/lib/site-data";
-import AliImage from "@/Images/Ali.png";
-import OmarImage from "@/Images/Omar.png";
-import KevinImage from "@/Images/Kevin.png";
-import CarlosImage from "@/Images/Carlos.png";
-import BrianImage from "@/Images/Brian.png";
+import AliImage from "@/Images/Ali.webp";
+import OmarImage from "@/Images/Omar.webp";
+import KevinImage from "@/Images/Kevin.webp";
+import CarlosImage from "@/Images/Carlos.webp";
+import BrianImage from "@/Images/Brian.webp";
 
 export const metadata: Metadata = {
   title: "About Bay Area Tech Help | Local Bay Area Tech Support",

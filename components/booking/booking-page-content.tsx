@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { BadgeCheck, Clock3, MapPinned, ShieldCheck } from "lucide-react";
@@ -10,8 +11,19 @@ import {
   getBookingServiceBySlug,
   type BookingService
 } from "@/lib/booking-services";
-import { SERVICE_AREA } from "@/lib/site-data";
-import { CalendlyEmbed } from "@/components/booking/calendly-embed";
+import { CONTACT_LINKS, SERVICE_AREA } from "@/lib/site-data";
+
+const LazyCalendlyEmbed = dynamic(
+  () => import("@/components/booking/calendly-embed").then((module) => module.CalendlyEmbed),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="glass-card flex min-h-[420px] items-center justify-center p-6 text-sm text-slate-600">
+        Preparing scheduler...
+      </div>
+    )
+  }
+);
 
 export function BookingPageContent() {
   const searchParams = useSearchParams();
@@ -21,6 +33,7 @@ export function BookingPageContent() {
   const [selectedService, setSelectedService] = useState<BookingService>(() =>
     getBookingServiceBySlug(DEFAULT_BOOKING_SERVICE_SLUG)
   );
+  const [isSchedulerVisible, setIsSchedulerVisible] = useState(false);
 
   useEffect(() => {
     const serviceParam = searchParams.get("service");
@@ -38,6 +51,7 @@ export function BookingPageContent() {
 
   function handleServiceChange(service: BookingService) {
     setSelectedService(service);
+    setIsSchedulerVisible(false);
     router.replace(`${pathname}?service=${service.slug}`, { scroll: false });
   }
 
@@ -107,7 +121,33 @@ export function BookingPageContent() {
       <section className="pb-10 sm:pb-12">
         <div className="section-shell">
           <p className="mb-3 text-base font-semibold text-slate-900 sm:mb-4">2) Pick a time and confirm online</p>
-          <CalendlyEmbed eventUrl={selectedServiceDetails.calendlyUrl} serviceName={selectedServiceDetails.name} />
+          {isSchedulerVisible ? (
+            <LazyCalendlyEmbed eventUrl={selectedServiceDetails.calendlyUrl} serviceName={selectedServiceDetails.name} />
+          ) : (
+            <div className="glass-card rounded-2xl p-5 sm:p-6">
+              <p className="text-sm text-slate-700">
+                Load the live scheduler for <span className="font-semibold">{selectedServiceDetails.name}</span> when you are ready.
+              </p>
+              <button
+                type="button"
+                className="cta-primary mt-4"
+                onClick={() => setIsSchedulerVisible(true)}
+              >
+                Load booking scheduler
+              </button>
+              <p className="mt-3 text-xs text-slate-500">
+                If booking does not load quickly, call or text us and we will confirm your appointment manually.
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <a className="cta-secondary px-3 py-2 text-xs" href={CONTACT_LINKS.call}>
+                  Call now
+                </a>
+                <a className="cta-secondary px-3 py-2 text-xs" href={CONTACT_LINKS.text}>
+                  Text for fast reply
+                </a>
+              </div>
+            </div>
+          )}
           <p className="mt-2 text-sm text-slate-600 sm:mt-3">
             Confirmation details and meeting instructions are sent to your email after booking.
           </p>
